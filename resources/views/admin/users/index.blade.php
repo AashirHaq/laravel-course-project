@@ -11,6 +11,7 @@
     <thead>
       <tr>
         <th scope="col">#</th>
+        <th scope="col">Photo</th>
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Role</th>
@@ -27,7 +28,10 @@
 
           <tr>
             <th scope="row">{{$user->id}}</th>
-            <td>{{$user->name}}</td>
+            <td>
+                <img height="50" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" alt="">
+            </td>
+            <td><a href="{{route('admin.users.edit', $user->id)}}">{{$user->name}}</a></td>
             <td>{{$user->email}}</td>
             <td>{{$user->role->name == null ? 'User has no Role' : $user->role->name}}</td>
             <td>{{$user->created_at->diffForHumans()}}</td>
